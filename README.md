@@ -77,6 +77,6 @@ License
 
 This project is licensed under the MIT License.
 
-![Featured Recipe Screenshot](assets/screenshot1.png)
-![Featured Recipe Screenshot](assets/screenshot2.png)
-![Featured Recipe Screenshot](assets/screenshot3.png)
+![Featured Recipe Screenshot](src/assets/Screenshot1.png)
+![Featured Recipe Screenshot](src/assets/Screenshot2.png)
+![Featured Recipe Screenshot](src/assets/Screenshot1.png)
