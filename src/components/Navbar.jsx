@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Navbar = () => {
   const linkClass = ({ isActive }) =>
@@ -18,6 +19,7 @@ const Navbar = () => {
                 Recipe Tracker
               </span>
             </div>
+
             <div className="flex space-x-4">
               <NavLink to="/" className={linkClass}>
                 Home
@@ -28,6 +30,7 @@ const Navbar = () => {
               <NavLink to="/add-recipe" className={linkClass}>
                 Add Recipe
               </NavLink>
+              <DarkModeToggle />
             </div>
           </div>
         </div>
