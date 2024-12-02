@@ -12,12 +12,12 @@ const Navbar = () => {
         className="bg-indigo-700 border-b border-indigo-500 shadow-md"
         aria-label="Main navigation"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl ml-2 px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-4">
-              <span className="text-white text-2xl font-extrabold">
+              <NavLink to="/" className="text-white text-2xl font-extrabold">
                 Recipe Tracker
-              </span>
+              </NavLink>
             </div>
 
             <div className="flex space-x-4">

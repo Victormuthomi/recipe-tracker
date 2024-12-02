@@ -284,7 +284,7 @@ const RecipesPage = () => {
           {filteredRecipes.map((recipe) => (
             <div
               key={recipe.name}
-              className="w-72 bg-gray-100 shadow-md rounded-lg mb-6 mx-4 p-6"
+              className="w-72 bg-gray-100 shadow-md rounded-lg mb-6 mx-4 p-4"
             >
               <h2 className="text-xl font-bold mb-2">{recipe.name}</h2>
               <p className="text-gray-700 mb-2">Category: {recipe.category}</p>
