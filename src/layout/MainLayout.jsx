@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import DarkModeToggle from "../components/DarkModeToggle";
 
 const MainLayout = () => {
   return (
-    <>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
       <Navbar />
-      <Outlet />
-    </>
+      <main className="container mx-auto p-4">
+        <Outlet />
+      </main>
+    </div>
   );
 };
 
