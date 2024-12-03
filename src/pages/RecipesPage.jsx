@@ -5,7 +5,7 @@ const FilterRecipe = ({ categories, onFilter }) => {
   return (
     <select
       onChange={(e) => onFilter(e.target.value)}
-      className="p-2 border rounded-md"
+      className="p-2 border rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
     >
       <option value="">All Categories</option>
       {categories.map((category) => (
@@ -46,47 +46,55 @@ const EditRecipeModal = ({ show, onClose, recipe, onEdit }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">Edit Recipe</h2>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+          Edit Recipe
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700">Recipe Name</label>
+            <label className="block text-gray-700 dark:text-gray-300">
+              Recipe Name
+            </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Category</label>
+            <label className="block text-gray-700 dark:text-gray-300">
+              Category
+            </label>
             <input
               type="text"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">
+            <label className="block text-gray-700 dark:text-gray-300">
               Ingredients (comma-separated)
             </label>
             <input
               type="text"
               value={ingredients}
               onChange={(e) => setIngredients(e.target.value)}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Instructions</label>
+            <label className="block text-gray-700 dark:text-gray-300">
+              Instructions
+            </label>
             <textarea
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
             />
           </div>
-          <div className="flex justify-end space-x-4">
+          <div className="flex justify-end space-x-4 mt-4">
             <button
               type="button"
               className="bg-gray-500 text-white py-2 px-4 rounded-md"
@@ -112,10 +120,16 @@ const ViewRecipeModal = ({ show, onClose, recipe }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">{recipe.name}</h2>
-        <h3 className="text-lg text-gray-600 mb-4">Instructions</h3>
-        <p className="text-gray-700">{recipe.instructions}</p>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+          {recipe.name}
+        </h2>
+        <h3 className="text-lg text-gray-600 dark:text-gray-300 mb-4">
+          Instructions
+        </h3>
+        <p className="text-gray-700 dark:text-gray-200">
+          {recipe.instructions}
+        </p>
         <div className="flex justify-end mt-4">
           <button
             className="bg-gray-500 text-white py-2 px-4 rounded-md"
@@ -134,9 +148,11 @@ const DeleteConfirmationModal = ({ show, onClose, onDelete, recipeName }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">Are you sure?</h2>
-        <p className="text-gray-700 mb-4">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+          Are you sure?
+        </h2>
+        <p className="text-gray-700 dark:text-gray-300 mb-4">
           You are about to delete "{recipeName}". This action cannot be undone.
         </p>
         <div className="flex justify-end space-x-4">
@@ -227,125 +243,123 @@ const RecipesPage = () => {
     closeDeleteModal();
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    const filtered = recipes.filter(
+      (recipe) =>
+        recipe.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        recipe.category.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredRecipes(filtered);
+  };
+
   const handleFilter = (category) => {
-    let filtered = recipes;
-    if (category !== "") {
-      filtered = recipes.filter((recipe) => recipe.category === category);
+    if (category) {
+      const filtered = recipes.filter((recipe) => recipe.category === category);
+      setFilteredRecipes(filtered);
+    } else {
+      setFilteredRecipes(recipes);
     }
-
-    if (searchQuery) {
-      filtered = filtered.filter((recipe) =>
-        recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    setFilteredRecipes(filtered);
   };
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    let filtered = recipes;
-    if (query) {
-      filtered = filtered.filter((recipe) =>
-        recipe.name.toLowerCase().includes(query.toLowerCase())
-      );
-    }
-
-    setFilteredRecipes(filtered);
-  };
-
-  const toggleIngredients = (recipeName) => {
+  const toggleIngredientsCollapse = (recipeName) => {
     setCollapsedIngredients((prevState) => ({
       ...prevState,
       [recipeName]: !prevState[recipeName],
     }));
   };
 
+  const handleEdit = (updatedRecipe) => {
+    const updatedRecipes = recipes.map((recipe) =>
+      recipe.name === updatedRecipe.name ? updatedRecipe : recipe
+    );
+    setRecipes(updatedRecipes);
+    setFilteredRecipes(updatedRecipes);
+    localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
+  };
+
   return (
-    <>
-      <div className="py-8">
-        <h1 className="text-center text-4xl font-bold text-indigo-800 mb-4">
-          Recipes
-        </h1>
+    <div className="container mx-auto p-6">
+      <div className="mb-6 flex justify-between items-center">
+        <input
+          type="text"
+          placeholder="Search by recipe name or category..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="p-2 border rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+        />
+        <FilterRecipe categories={categories} onFilter={handleFilter} />
+      </div>
 
-        <div className="flex justify-between items-center mb-6 ml-6">
-          <FilterRecipe categories={categories} onFilter={handleFilter} />
-
-          <input
-            type="text"
-            placeholder="Search Recipes"
-            value={searchQuery}
-            onChange={(e) => handleSearch(e.target.value)}
-            className="p-2 border rounded-md w-72 mr-6"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-          {filteredRecipes.map((recipe) => (
-            <div
-              key={recipe.name}
-              className="w-72 bg-gray-100 shadow-md rounded-lg mb-6 mx-4 p-4"
-            >
-              <h2 className="text-xl font-bold mb-2">{recipe.name}</h2>
-              <p className="text-gray-700 mb-2">Category: {recipe.category}</p>
-
-              <div className="mb-4">
-                <button
-                  onClick={() => toggleIngredients(recipe.name)}
-                  className="text-blue-600 hover:bg-blue-100 rounded-full py-2 px-4 w-full mb-4"
-                >
-                  {collapsedIngredients[recipe.name]
-                    ? "Hide Ingredients"
-                    : "Show Ingredients"}
-                </button>
-                {collapsedIngredients[recipe.name] && (
-                  <ul className="list-disc pl-6">
-                    {recipe.ingredients.map((ingredient, index) => (
-                      <li key={index} className="text-gray-700">
-                        {ingredient}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              <div className="flex justify-between space-x-2">
-                <button
-                  onClick={() => openViewModal(recipe)}
-                  className="text-blue-600 hover:bg-blue-100 rounded-full py-2 px-4 w-full"
-                >
-                  View More
-                </button>
-                <button
-                  onClick={() => openModal(recipe)}
-                  className="text-blue-600 hover:bg-blue-100 rounded-full py-2 px-4 w-full"
-                >
-                  Edit Recipe
-                </button>
-                <button
-                  onClick={() => openDeleteModal(recipe)}
-                  className="text-red-600 hover:bg-red-100 rounded-full py-2 px-2 w-full"
-                >
-                  Delete Recipe
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="mb-6">
+        {filteredRecipes.length === 0 ? (
+          <p>No recipes found.</p>
+        ) : (
+          <ul className="space-y-4">
+            {filteredRecipes.map((recipe) => (
+              <li
+                key={recipe.name}
+                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md"
+              >
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+                  {recipe.name}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-2">
+                  Category: {recipe.category}
+                </p>
+                <div>
+                  <button
+                    onClick={() => toggleIngredientsCollapse(recipe.name)}
+                    className="text-indigo-500"
+                  >
+                    {collapsedIngredients[recipe.name]
+                      ? "Hide Ingredients"
+                      : "Show Ingredients"}
+                  </button>
+                  {collapsedIngredients[recipe.name] && (
+                    <ul className="list-disc pl-6 mt-2">
+                      {recipe.ingredients.map((ingredient, index) => (
+                        <li
+                          key={index}
+                          className="text-gray-700 dark:text-gray-200"
+                        >
+                          {ingredient}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                <div className="flex justify-end space-x-4 mt-4">
+                  <button
+                    onClick={() => openViewModal(recipe)}
+                    className="bg-blue-500 text-white py-2 px-4 rounded-md"
+                  >
+                    View
+                  </button>
+                  <button
+                    onClick={() => openModal(recipe)}
+                    className="bg-green-500 text-white py-2 px-4 rounded-md"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => openDeleteModal(recipe)}
+                    className="bg-red-500 text-white py-2 px-4 rounded-md"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <EditRecipeModal
         show={modalOpen}
         onClose={closeModal}
         recipe={selectedRecipe}
-        onEdit={(updatedRecipe) => {
-          const updatedRecipes = recipes.map((recipe) =>
-            recipe.name === updatedRecipe.name ? updatedRecipe : recipe
-          );
-          setRecipes(updatedRecipes);
-          setFilteredRecipes(updatedRecipes);
-          localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
-        }}
+        onEdit={handleEdit}
       />
       <ViewRecipeModal
         show={viewModalOpen}
@@ -358,7 +372,7 @@ const RecipesPage = () => {
         onDelete={handleDelete}
         recipeName={recipeToDelete?.name}
       />
-    </>
+    </div>
   );
 };
 
