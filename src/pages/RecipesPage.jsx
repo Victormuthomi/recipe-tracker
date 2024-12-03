@@ -314,13 +314,13 @@ const RecipesPage = () => {
               </button>
               <button
                 onClick={() => openModal(recipe)}
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mt-2"
+                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mt-2 sm:mt-0 sm:ml-2"
               >
                 Edit
               </button>
               <button
                 onClick={() => openDeleteModal(recipe)}
-                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md mt-2"
+                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md mt-2 sm:mt-0 sm:ml-2"
               >
                 Delete
               </button>
