@@ -6,7 +6,7 @@ const FilterRecipe = ({ categories, onFilter }) => {
   const handleChange = (e) => {
     const category = e.target.value;
     setSelectedCategory(category);
-    onFilter(category); // Pass the selected category to the parent component to filter recipes
+    onFilter(category);
   };
 
   return (

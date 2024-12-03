@@ -42,7 +42,7 @@ const AddRecipePage = () => {
     <section className="min-h-screen bg-gray-100 dark:bg-gray-900 flex justify-center items-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-white dark:bg-gray-800 shadow-md rounded-lg px-8 py-6 max-w-md w-full"
+        className="bg-white dark:bg-gray-800 shadow-md rounded-lg px-8 mt-2 py-6 max-w-md w-full"
       >
         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">
           Add Recipe
