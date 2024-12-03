@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div className="text-base sm:text-lg md:text-xl lg:text-2xl">
       <nav
-        className="relative bg-indigo-700 border-b border-indigo-500 shadow-md"
+        className="relative bg-indigo-700 dark:bg-indigo-900 border-b border-indigo-500 dark:border-indigo-600 shadow-md"
         aria-label="Main navigation"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -59,7 +59,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden bg-indigo-700 shadow-lg">
+          <div className="md:hidden bg-indigo-700 dark:bg-indigo-900 shadow-lg">
             <div className="flex flex-col items-center space-y-4 py-4">
               <NavLink to="/" className={linkClass} onClick={toggleMenu}>
                 Home
