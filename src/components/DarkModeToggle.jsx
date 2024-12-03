@@ -19,10 +19,10 @@ function DarkModeToggle() {
     <div className="bg-white dark:bg-black">
       <button
         onClick={handleThemeSwitch}
-        className={`px-4 py-2 rounded ${
+        className={`px-4 py-2 rounded-full ${
           theme === "dark"
-            ? "bg-gray-800 text-white hover:bg-gray-700"
-            : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+            ? "bg-gray-800 text-white hover:bg-gray-700 "
+            : "bg-gray-200 text-gray-800 hover:bg-gray-300 "
         }`}
       >
         {theme === "dark" ? "Dark mode" : "Light mode"}
