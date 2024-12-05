@@ -5,7 +5,7 @@ const RandomCard = () => {
   const defaultRecipe = {
     name: "Default Pancake",
     description: "A simple and delicious pancake recipe.",
-    image: "../public/images/recipe.jpeg",
+    image: "/images/recipe.jpeg",
   };
 
   const [randomRecipe, setRandomRecipe] = useState(null);
@@ -14,24 +14,20 @@ const RandomCard = () => {
     const storedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
 
     if (storedRecipes.length > 0) {
-      // If there are recipes in localStorage, pick a random one
       const randomIndex = Math.floor(Math.random() * storedRecipes.length);
       setRandomRecipe(storedRecipes[randomIndex]);
     } else {
-      // If no recipes, use the default recipe
       setRandomRecipe(defaultRecipe);
     }
-  }, []); // Empty dependency array to run only once on mount
+  }, []);
 
-  // Render a loading or error state if no recipe is available
   if (!randomRecipe) {
     return <p>Loading...</p>;
   }
 
-  // Ensure ingredients is an array before calling join
   const ingredientsList = Array.isArray(randomRecipe.ingredients)
     ? randomRecipe.ingredients.join(", ")
-    : randomRecipe.ingredients; // Fallback if it's not an array
+    : randomRecipe.ingredients;
 
   return (
     <section className="bg-white dark:bg-gray-800 py-4">
