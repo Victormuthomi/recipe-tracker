@@ -294,7 +294,7 @@ const RecipesPage = () => {
           <FilterRecipe categories={categories} onFilter={handleFilter} />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {filteredRecipes.map((recipe) => (
             <div
               key={recipe.name}
@@ -306,6 +306,16 @@ const RecipesPage = () => {
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {recipe.category}
               </p>
+              {recipe.imageURL && (
+                <div className="flex justify-center">
+                  <img
+                    src={recipe.imageURL}
+                    alt={`${recipe.name} image`}
+                    className="w-full m-4 rounded-md h-50 object-cover"
+                  />
+                </div>
+              )}
+
               <button
                 onClick={() => openViewModal(recipe)}
                 className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md mr-3 mb-3 sm:mr-3 sm:mb-0"

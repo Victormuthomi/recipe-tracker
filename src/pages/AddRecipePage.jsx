@@ -157,8 +157,8 @@ const AddRecipePage = () => {
           </label>
           <input
             type="url"
-            id="image-url"
-            name="image-url"
+            id="image"
+            name="image"
             className="border rounded-md w-full py-2 px-3 text-gray-700 dark:text-gray-200 dark:bg-gray-700"
             placeholder="https://example.com/image.jpg"
             value={imageURL}
