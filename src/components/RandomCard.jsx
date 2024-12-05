@@ -3,11 +3,8 @@ import React, { useEffect, useState } from "react";
 
 const RandomCard = () => {
   const defaultRecipe = {
-    name: "Today Special Recipe",
-    description: "A simple and delicious meal recipe.",
-    ingredients: "Here are the meals ingredients",
-    Instructions:
-      "Here is a step to step instruction on how to prepare the meal",
+    name: "Default Pancake",
+    description: "A simple and delicious pancake recipe.",
     image: "../public/images/recipe.jpeg",
   };
 
@@ -24,7 +21,7 @@ const RandomCard = () => {
       // If no recipes, use the default recipe
       setRandomRecipe(defaultRecipe);
     }
-  }, [defaultRecipe]); // Adding defaultRecipe to ensure it updates properly if it's changed
+  }, []); // Empty dependency array to run only once on mount
 
   // Render a loading or error state if no recipe is available
   if (!randomRecipe) {
@@ -61,7 +58,7 @@ const RandomCard = () => {
 
           <div className="mb-4">
             <p className="text-lg text-gray-500 dark:text-gray-400">
-              instructions: {randomRecipe.Instructions}
+              Instructions: {randomRecipe.instructions}
             </p>
           </div>
 
