@@ -5,7 +5,10 @@ const RandomCard = () => {
   const defaultRecipe = {
     name: "Default Pancake",
     description: "A simple and delicious pancake recipe.",
-    image: "/images/recipe.jpeg",
+    ingredients: "Flour, Eggs, Milk, Butter, Sugar, Baking Powder, Salt",
+    instructions:
+      "Mix all ingredients and cook on a griddle until golden brown.",
+    image: "/images/pancake.jpeg",
   };
 
   const [randomRecipe, setRandomRecipe] = useState(null);
