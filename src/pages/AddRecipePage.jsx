@@ -163,6 +163,8 @@ const AddRecipePage = () => {
             placeholder="https://example.com/image.jpg"
             value={imageURL}
             onChange={(e) => setImageURL(e.target.value)}
+            pattern="https?://.*"
+            title="Enter a valid URL starting with http:// or https://"
           />
         </div>
 

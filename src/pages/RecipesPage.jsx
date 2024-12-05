@@ -306,6 +306,11 @@ const RecipesPage = () => {
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {recipe.category}
               </p>
+
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                {recipe.ingredients}
+              </p>
+
               {recipe.imageURL && (
                 <div className="flex justify-center">
                   <img
