@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Spaghetti Bolognese",
+    "category": "Breakfast",
+    "description": "A classic Italian pasta dish with a rich meat sauce.",
+    "ingredients": "Spaghetti, Ground Beef, Tomato Sauce, Onion, Garlic, Olive Oil, Basil, Salt, Pepper",
+    "instructions": "Cook spaghetti and top with Bolognese sauce.",
+    "image": "/images/spaghetti.jpeg"
+  },
+  {
+    "name": "Chicken Caesar Salad",
+    "category": "Lunch",
+    "description": "A fresh and crispy salad with grilled chicken and Caesar dressing.",
+    "ingredients": "Lettuce, Chicken Breast, Croutons, Parmesan Cheese, Caesar Dressing",
+    "instructions": "Grill chicken, toss with lettuce and dressing, and top with croutons.",
+    "image": "/images/chicken.jpeg"
+  },
+  {
+    "name": "Veggie Stir-Fry",
+    "category": "Dinner",
+    "description": "A colorful mix of vegetables stir-fried with soy sauce.",
+    "ingredients": "Bell Peppers, Carrots, Broccoli, Onion, Garlic, Soy Sauce, Olive Oil",
+    "instructions": "Stir-fry vegetables with garlic and soy sauce until tender.",
+    "image": "/images/veggie.jpeg"
+  },
+  {
+    "name": "Chocolate Chip Cookies",
+    "category": "Dessert",
+    "description": "Soft and chewy cookies with lots of chocolate chips.",
+    "ingredients": "Flour, Sugar, Butter, Chocolate Chips, Eggs, Baking Soda, Salt",
+    "instructions": "Mix ingredients, form dough, bake at 350°F for 10 minutes.",
+    "image": "/images/chips.jpeg"
+  }
+]

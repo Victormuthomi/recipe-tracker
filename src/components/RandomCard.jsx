@@ -34,39 +34,39 @@ const RandomCard = () => {
 
   return (
     <section className="bg-white dark:bg-gray-800 py-4">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-3 sm:px-5 lg:px-8">
         <div className="bg-blue-50 dark:bg-gray-700 border border-blue-200 dark:border-gray-600 rounded-lg shadow-md p-6">
           <h1 className="text-3xl font-bold text-blue-500 dark:text-blue-400 mb-2">
             Featured Recipe
           </h1>
 
           <div className="mb-4">
-            <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            <h2 className="text-2xl font-semibold text-center text-indigo-700 dark:text-gray-300 mb-2">
               {randomRecipe.name}
             </h2>
-            <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2">
+            <h3 className="text-xl font-semibold text-center text-gray-800 dark:text-indigo-400 mb-2">
               {randomRecipe.category}
             </h3>
           </div>
 
           <div className="mb-4">
-            <p className="text-lg text-gray-500 dark:text-gray-400">
+            <p className="text-lg text-gray-500 text-center dark:text-gray-400">
               Ingredients: {ingredientsList}
             </p>
           </div>
 
           <div className="mb-4">
-            <p className="text-lg text-gray-500 dark:text-gray-400">
+            <p className="text-lg text-gray-500 text-center dark:text-gray-400">
               Instructions: {randomRecipe.instructions}
             </p>
           </div>
 
           {randomRecipe.image && (
-            <div className="flex justify-left">
+            <div className="flex justify-center">
               <img
                 src={randomRecipe.image}
                 alt={`${randomRecipe.name} image`}
-                className="w-80 rounded-md m-4 h-50 object-cover"
+                className="w-50 h-50 rounded-md m-4  h-50 object-cover"
               />
             </div>
           )}

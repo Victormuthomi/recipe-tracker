@@ -1,3 +1,4 @@
+import defaultRecipes from "../assets/data/defaultRecipes.json";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -176,31 +177,43 @@ const DeleteConfirmationModal = ({ show, onClose, onDelete, recipeName }) => {
 
 const RecipesPage = () => {
   const [recipes, setRecipes] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [viewModalOpen, setViewModalOpen] = useState(false);
-  const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [viewModalOpen, setViewModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [recipeToDelete, setRecipeToDelete] = useState(null);
-  const [collapsedIngredients, setCollapsedIngredients] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const storedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
-    const validatedRecipes = storedRecipes.map((recipe) => ({
-      ...recipe,
-      ingredients: Array.isArray(recipe.ingredients) ? recipe.ingredients : [],
-      showIngredients: false,
-    }));
+    const storedRecipes = JSON.parse(localStorage.getItem("recipes"));
 
-    setRecipes(validatedRecipes);
-    setFilteredRecipes(validatedRecipes);
+    if (!storedRecipes || storedRecipes.length === 0) {
+      // Only set defaultRecipes if there's no data in localStorage
+      localStorage.setItem("recipes", JSON.stringify(defaultRecipes));
+      setRecipes(defaultRecipes);
+      setFilteredRecipes(defaultRecipes);
 
-    const uniqueCategories = [
-      ...new Set(validatedRecipes.map((recipe) => recipe.category)),
-    ];
-    setCategories(uniqueCategories);
+      const uniqueCategories = [
+        ...new Set(defaultRecipes.map((recipe) => recipe.category)),
+      ];
+      setCategories(uniqueCategories);
+    } else {
+      const validatedRecipes = storedRecipes.map((recipe) => ({
+        ...recipe,
+        ingredients: Array.isArray(recipe.ingredients)
+          ? recipe.ingredients
+          : [],
+      }));
+      setRecipes(validatedRecipes);
+      setFilteredRecipes(validatedRecipes);
+
+      const uniqueCategories = [
+        ...new Set(validatedRecipes.map((recipe) => recipe.category)),
+      ];
+      setCategories(uniqueCategories);
+    }
   }, []);
 
   const openModal = (recipe) => {
@@ -268,103 +281,98 @@ const RecipesPage = () => {
     );
   };
 
+  const handleEditRecipe = (updatedRecipe) => {
+    const updatedRecipes = recipes.map((recipe) =>
+      recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+    );
+    setRecipes(updatedRecipes);
+    setFilteredRecipes(updatedRecipes);
+    localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="p-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
-            Recipe Management
-          </h1>
-          <Link
-            to="/add-recipe"
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+    <div className="p-6">
+      <div className="flex justify-between mb-6">
+        <input
+          type="text"
+          placeholder="Search for a recipe..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="p-2 border rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white w-full sm:w-auto"
+        />
+        <Link
+          to="/add-recipe"
+          className="bg-green-700 text-white py-2 px-4 rounded-md"
+        >
+          Add New Recipe
+        </Link>
+      </div>
+      <div className="flex justify-center mb-3">
+        <FilterRecipe categories={categories} onFilter={handleFilter} />
+      </div>
+      <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {filteredRecipes.map((recipe) => (
+          <div
+            key={recipe.id}
+            className="border p-4 rounded-md bg-indigo-100 dark:bg-gray-800 shadow-md"
           >
-            Add Recipe
-          </Link>
-        </div>
+            <h3 className="text-xl font-semibold text-center text-indigo-800 dark:text-white mb-4">
+              {recipe.name}
+            </h3>
 
-        <div className="flex space-x-4 mt-4">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearch}
-            placeholder="Search recipes"
-            className="p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white w-full sm:w-64"
-          />
-          <FilterRecipe categories={categories} onFilter={handleFilter} />
-        </div>
+            <p className="text-gray-700 text-center font-bold dark:text-gray-300 mb-4">
+              {recipe.category}
+            </p>
 
-        <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-          {filteredRecipes.map((recipe) => (
-            <div
-              key={recipe.name}
-              className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg"
-            >
-              <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
-                {recipe.name}
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {recipe.category}
-              </p>
+            <p className="text-gray-800 text-center dark:text-gray-300 mb-4">
+              {recipe.instructions}
+            </p>
 
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {recipe.ingredients}
-              </p>
+            {recipe.image && (
+              <div className="flex justify-center">
+                <img
+                  src={recipe.image}
+                  alt={`${recipe.name} image`}
+                  className="w-50 h-50 rounded-md m-3  object-center"
+                />
+              </div>
+            )}
 
-              {recipe.imageURL && (
-                <div className="flex justify-center">
-                  <img
-                    src={recipe.imageURL}
-                    alt={`${recipe.name} image`}
-                    className="w-full m-4 rounded-md h-50 object-cover"
-                  />
-                </div>
-              )}
-
+            <div className="flex justify-center space-x-4">
               <button
                 onClick={() => openViewModal(recipe)}
-                className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md mr-3 mb-3 sm:mr-3 sm:mb-0"
+                className="bg-blue-500 text-white py-2 px-4 pl-5 rounded-md"
               >
                 View
               </button>
               <button
                 onClick={() => openModal(recipe)}
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mr-3 mb-3 sm:mr-2 sm:mb-0"
+                className="bg-yellow-500 py-2 px-4 text-white rounded-md"
               >
                 Edit
               </button>
               <button
                 onClick={() => openDeleteModal(recipe)}
-                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md mb-2 sm:mb-0"
+                className="bg-red-500 text-white py-2 px-2 rounded-md"
               >
                 Delete
               </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       <EditRecipeModal
         show={modalOpen}
         onClose={closeModal}
         recipe={selectedRecipe}
-        onEdit={(updatedRecipe) => {
-          setRecipes((prevRecipes) =>
-            prevRecipes.map((recipe) =>
-              recipe.name === updatedRecipe.name ? updatedRecipe : recipe
-            )
-          );
-          localStorage.setItem("recipes", JSON.stringify(recipes));
-          closeModal();
-        }}
+        onEdit={handleEditRecipe}
       />
-
       <ViewRecipeModal
         show={viewModalOpen}
         onClose={closeViewModal}
         recipe={selectedRecipe}
       />
-
       <DeleteConfirmationModal
         show={deleteModalOpen}
         onClose={closeDeleteModal}
