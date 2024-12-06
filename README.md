@@ -1,80 +1,59 @@
-# Recipe Tracker Application
+## Recipe Tracker Application
 
-A responsive and user-friendly Recipe Tracker application where users can manage their favorite recipes efficiently.  
+A responsive and user-friendly Recipe Tracker application where users can manage their favorite recipes efficiently.
 This application is built with Vite + React and styled using Tailwind CSS.
+Features
 
-## Features
-
-- **Add Recipes**: Users can create new recipes by providing relevant details.
-- **View Recipes**: Displays recipes in a clean and responsive grid layout.
-- **Edit Recipes**: Users can modify existing recipe details.
-- **Delete Recipes**: Remove unwanted recipes with ease.
-- **Search Recipes**: Quickly find recipes using keywords.
-- **Filter Recipes**: Filter recipes by categories or tags.
-- **Featured Recipe**: Displays a random recipe in a "Featured Recipe" section.
-- **Dark/Light Mode**: Toggle between dark and light themes for better accessibility and user experience.
+    Add Recipes: Users can create new recipes by providing relevant details.
+    View Recipes: Displays recipes in a clean and responsive grid layout.
+    Edit Recipes: Users can modify existing recipe details.
+    Delete Recipes: Remove unwanted recipes with ease.
+    Search Recipes: Quickly find recipes using keywords.
+    Filter Recipes: Filter recipes by categories or tags.
+    Featured Recipe: Displays a random recipe in a "Featured Recipe" section.
+    Dark/Light Mode: Toggle between dark and light themes for better accessibility and user experience.
 
 ## Tech Stack
 
-- **Frontend**: Vite + React
-- **Styling**: Tailwind CSS
+    Frontend: Vite + React
+    Styling: Tailwind CSS
 
-## Installation and Setup
+Installation and Setup
+Prerequisites
 
-### Prerequisites
+    Node.js
+    npm or yarn
 
-- Node.js
-- npm or yarn
+Steps to Run the Application Locally
 
-### Steps to Run the Application Locally
+    Clone the repository:
 
-1. **Clone the repository**:
+git clone <https://github.com/Victormuthomi/recipe-tracker>
+cd recipe-tracker
 
-   ```bash
-   git clone https://github.com/Victormuthomi/recipe-tracker
-   cd recipe-tracker
-   ```
+Install dependencies:
 
-2. **Install dependencies**:
+npm install
 
-   Using npm:
+# or
 
-   ```bash
-   npm install
-   ```
+yarn install
 
-   Or using yarn:
+Start the development server:
 
-   ```bash
-   yarn install
-   ```
+    npm run dev
+    # or
+    yarn dev
 
-3. **Start the development server**:
+    Open the application in your browser at http://localhost:5173.
 
-   Using npm:
-
-   ```bash
-   npm run dev
-   ```
-
-   Or using yarn:
-
-   ```bash
-   yarn dev
-   ```
-
-4. **Open the application in your browser** at [http://localhost:5173](http://localhost:5173).
-
-### Building for Production
+Building for Production
 
 To build the application for production:
 
-Using npm:
-
-```bash
 npm run build
 
- or
+# or
 
 yarn build
 
@@ -85,7 +64,7 @@ To preview the production build locally:
 
 npm run preview
 
-or
+# or
 
 yarn preview
 
@@ -98,4 +77,3 @@ This project is licensed under the MIT License.
 ![Featured Recipe Screenshot](src/assets/Screenshot1.png)
 ![Featured Recipe Screenshot](src/assets/Screenshot2.png)
 ![Featured Recipe Screenshot](src/assets/Screenshot3.png)
-```
