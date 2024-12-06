@@ -125,10 +125,17 @@ const ViewRecipeModal = ({ show, onClose, recipe }) => {
         <h2 className="text-xl font-bold text-center text-indigo-800 dark:text-white mb-4">
           {recipe.name}
         </h2>
-        <h3 className="text-lg text-gray-800 dark:text-gray-300 mb-4">
+
+        <h3 className="text-lg  font-bold text-gray-900  dark:text-gray-300 mb-4">
+          Ingredients
+        </h3>
+
+        <p className="text-gray-700 dark:text-gray-200">{recipe.ingredients}</p>
+
+        <h3 className="text-lg font-bold text-gray-900 dark:text-gray-300 mb-4">
           Instructions
         </h3>
-        <p className="text-gray-700 dark:text-gray-200">
+        <p className="text-gray-700  dark:text-gray-200">
           {recipe.instructions}
         </p>
         <div className="flex justify-end mt-4">
