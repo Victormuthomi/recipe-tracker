@@ -119,29 +119,41 @@ const EditRecipeModal = ({ show, onClose, recipe, onEdit }) => {
 const ViewRecipeModal = ({ show, onClose, recipe }) => {
   if (!show || !recipe) return null;
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show the modal with animation
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 10);
+  }, []);
+
+  // Close animation and trigger parent close
+  const handleClose = () => {
+    setIsVisible(false);
+    setTimeout(onClose, 300); // Delay to complete animation before unmounting
+  };
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-indigo-200 dark:bg-gray-800 text-center p-4 rounded-lg shadow-lg max-w-sm sm:max-w-lg w-full">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50">
+      <div
+        className={`bg-indigo-200 dark:bg-gray-800 text-center p-4 rounded-lg shadow-lg max-w-sm sm:max-w-lg w-full transform transition-all duration-300 ${
+          isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        }`}
+      >
         <h2 className="text-xl font-bold text-center text-indigo-800 dark:text-white mb-4">
           {recipe.name}
         </h2>
 
-        <h3 className="text-lg  font-bold text-gray-900  dark:text-gray-300 mb-4">
-          Ingredients
-        </h3>
-
-        <p className="text-gray-700 dark:text-gray-200">{recipe.ingredients}</p>
-
         <h3 className="text-lg font-bold text-gray-900 dark:text-gray-300 mb-4">
           Instructions
         </h3>
-        <p className="text-gray-700  dark:text-gray-200">
+        <p className="text-gray-700 dark:text-gray-200">
           {recipe.instructions}
         </p>
+
         <div className="flex justify-end mt-4">
           <button
             className="bg-gray-500 text-white py-2 px-4 rounded-md"
-            onClick={onClose}
+            onClick={handleClose}
           >
             Close
           </button>
