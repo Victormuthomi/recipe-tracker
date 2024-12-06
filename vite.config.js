@@ -7,4 +7,8 @@ export default defineConfig({
   start: {
     port: 3000,
   },
+  base: "/", // Adjust this if your app is deployed in a subdirectory
+  build: {
+    outDir: "dist", // Ensure this matches your deployment target
+  },
 });
