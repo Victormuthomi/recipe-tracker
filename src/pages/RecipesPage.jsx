@@ -310,7 +310,7 @@ const RecipesPage = () => {
       <div className="flex justify-center mb-3">
         <FilterRecipe categories={categories} onFilter={handleFilter} />
       </div>
-      <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 gap-5">
         {filteredRecipes.map((recipe) => (
           <div
             key={recipe.id}
