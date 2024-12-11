@@ -132,6 +132,10 @@ const ViewRecipeModal = ({ show, onClose, recipe }) => {
     setTimeout(onClose, 300); // Delay to complete animation before unmounting
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50">
       <div
@@ -150,13 +154,22 @@ const ViewRecipeModal = ({ show, onClose, recipe }) => {
           {recipe.instructions}
         </p>
 
-        <div className="flex justify-end mt-4">
+        <div className="flex justify-end py-2 mt-2 mb-2">
           <button
-            className="bg-gray-500 text-white py-2 px-4 rounded-md"
+            className="bg-gray-500 text-white py-1 px-4 rounded-lg"
             onClick={handleClose}
           >
             Close
           </button>
+
+          <div className="px-6">
+            <button
+              className="bg-green-500  text-white py-2 px-4 rounded-lg"
+              onClick={handlePrint}
+            >
+              Print
+            </button>
+          </div>
         </div>
       </div>
     </div>
