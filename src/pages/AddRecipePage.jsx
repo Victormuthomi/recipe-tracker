@@ -1,4 +1,5 @@
 import { useState } from "react"; // Importing the useState hook for managing component state
+import RecipeUploader from "../components/RecipeUploader";
 
 const AddRecipePage = () => {
   // Defining state variables for form fields
@@ -192,7 +193,11 @@ const AddRecipePage = () => {
           >
             Add Recipe
           </button>
+          <div>
+            <h2 className="text-slate-100 text-bold mt-3 text-center">Or</h2>
+          </div>
         </div>
+        <RecipeUploader />
       </form>
     </section>
   );
