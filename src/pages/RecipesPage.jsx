@@ -2,6 +2,24 @@ import defaultRecipes from "../assets/data/defaultRecipes.json";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+//copy recipe to clipboard
+const handleCopyToClipboard = (recipe) => {
+  const recipeText = `
+      Recipe: ${recipe.name}
+      Ingredients: ${recipe.ingredients.join(", ")}
+      Instructions: ${recipe.instructions}
+    `;
+
+  navigator.clipboard
+    .writeText(recipeText)
+    .then(() => {
+      alert("Recipe copied to clipboard!");
+    })
+    .catch((err) => {
+      alert("Failed to copy text: ", err);
+    });
+};
+
 const FilterRecipe = ({ categories, onFilter }) => {
   return (
     <select
@@ -388,6 +406,13 @@ const RecipesPage = () => {
                 className="bg-red-500 text-white py-2 px-2 rounded-md"
               >
                 Delete
+              </button>
+
+              <button
+                onClick={() => handleCopyToClipboard(recipe)} // Ensure 'recipe' is passed here
+                className="bg-green-500 text-white py-2 px-4 rounded-md"
+              >
+                Copy
               </button>
             </div>
           </div>
