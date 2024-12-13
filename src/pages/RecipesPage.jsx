@@ -348,11 +348,11 @@ const RecipesPage = () => {
           placeholder="Search for a recipe..."
           value={searchQuery}
           onChange={handleSearch}
-          className="p-2 border rounded-md bg-white dark:bg-gray-800 text-gray-800 dark:text-white w-full sm:w-auto"
+          className=" border rounded-md bg-white  dark:bg-gray-800 text-gray-800 dark:text-white w-full sm:w-auto"
         />
         <Link
           to="/add-recipe"
-          className="bg-green-700 text-white py-2 px-4 rounded-md"
+          className="bg-green-700 text-white py-1 px-2 ml-3 text-center w-full rounded-md"
         >
           Add New Recipe
         </Link>
